@@ -46,6 +46,7 @@ jobs:
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> back/bootSBerp/.env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> back/bootSBerp/.env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> back/bootSBerp/.env
+          echo "kjy.openai.api.key=${{ secrets.KJY_OPENAI_API_KEY }}" >> back/bootSBerp/.env
 
       - name: Ensure app directory exists on EC2
         uses: appleboy/ssh-action@v1.0.3
