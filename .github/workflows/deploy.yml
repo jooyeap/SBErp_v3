@@ -103,7 +103,7 @@ jobs:
             pm2 delete backend || true
             export $(cat .env | xargs)
             JAR_NAME=$(ls *.jar | grep -v plain | head -n 1)
-            pm2 start java --name backend -- -jar $JAR_NAME
+            pm2 start java --name backend -- -Xms256m -Xmx400m -Xss256k -jar $JAR_NAME
 
   frontend:
     runs-on: ubuntu-latest
