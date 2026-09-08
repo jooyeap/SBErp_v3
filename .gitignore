@@ -1,0 +1,17 @@
+# Backend (Eclipse/STS)
+back/.metadata/
+back/.settings/
+back/.classpath
+back/.project
+back/build/
+back/target/
+
+# Frontend (Next.js)
+front/node_modules/
+front/.next/
+front/.env
+front/.env.local
+front/.env.*.local
+
+# 워크스페이스 잔재
+.metadata/
