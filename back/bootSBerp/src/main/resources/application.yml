@@ -41,6 +41,8 @@ spring:
       ddl-auto: validate # test 환경 create-drop 매번 초기화 / update 부분 수정
     properties:
       hibernate:
+        type:
+          preferred_boolean_jdbc_type: NUMERIC
         format_sql: true
         show_sql: true
         default_batch_fetch_size: 100
