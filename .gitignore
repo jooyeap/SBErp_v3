@@ -15,3 +15,15 @@ front/.env.*.local
 
 # 워크스페이스 잔재
 .metadata/
+
+# 위치 상관없이 모든 .env 계열 제외
+**/.env
+**/.env.local
+**/.env.*.local
+
+docs/**
+SBErp_accessKeys.csv
+SBErpV3.pem
+
+# DB 초기화/더미데이터 스크립트 (별도 관리)
+final*.sql
