@@ -63,7 +63,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "${{ env.JAR_FILE }}"
           target: "/home/ubuntu/app/back"
-          strip_components: 2
+          strip_components: 4
 
       - name: Copy Backend .env to EC2
         uses: appleboy/scp-action@v0.1.7
