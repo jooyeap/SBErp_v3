@@ -72,6 +72,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "back/bootSBerp/.env"
+          strip_components: 2
           target: "/home/ubuntu/app/back"
 
       - name: Wait for Oracle & Redis readiness on EC2
