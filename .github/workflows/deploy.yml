@@ -20,20 +20,20 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
-        working-directory: back
+        working-directory: back/bootSBerp
 
       - name: Build Spring Boot App
         run: ./gradlew clean build -x test
-        working-directory: back
+        working-directory: back/bootSBerp
 
       - name: Find JAR file (fat jar만 선택)
-        run: echo "JAR_FILE=$(ls back/build/libs/*.jar | grep -v plain | head -n 1)" >> $GITHUB_ENV
+        run: echo "JAR_FILE=$(ls back/bootSBerp/build/libs/*.jar | grep -v plain | head -n 1)" >> $GITHUB_ENV
 
       - name: Ensure JAR exists
         run: |
           if [ ! -f "${{ env.JAR_FILE }}" ]; then
             echo "JAR file not found"
-            ls -al back/build/libs
+            ls -al back/bootSBerp/build/libs
             exit 1
           fi
           echo "JAR found: ${{ env.JAR_FILE }}"
@@ -41,11 +41,11 @@ jobs:
       # 소셜로그인 안 쓰므로 GOOGLE/KAKAO/NAVER 관련 줄은 제거
       - name: Create Backend .env from Secrets
         run: |
-          echo "DB_URL=${{ secrets.DB_URL }}" >> back/.env
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> back/.env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> back/.env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> back/.env
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> back/.env
+          echo "DB_URL=${{ secrets.DB_URL }}" >> back/bootSBerp/.env
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> back/bootSBerp/.env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> back/bootSBerp/.env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> back/bootSBerp/.env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> back/bootSBerp/.env
 
       - name: Ensure app directory exists on EC2
         uses: appleboy/ssh-action@v1.0.3
@@ -71,7 +71,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "back/.env"
+          source: "back/bootSBerp/.env"
           target: "/home/ubuntu/app/back"
 
       - name: Wait for Oracle & Redis readiness on EC2
@@ -137,7 +137,7 @@ jobs:
       - name: Archive frontend build
         run: |
           cd front
-          tar -czf ../frontend-build.tar.gz .next public package.json .env.production
+          tar -czf ../frontend-build.tar.gz .next package.json .env.production
 
       - name: Copy frontend archive to EC2
         uses: appleboy/scp-action@v0.1.7
@@ -156,7 +156,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ubuntu/app/front
-            rm -rf .next public
+            rm -rf .next
             tar -xzf frontend-build.tar.gz
 
       - name: Run Frontend on EC2 with pm2
