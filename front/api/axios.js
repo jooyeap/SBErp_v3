@@ -14,7 +14,7 @@ const api = axios.create({
     Accept: "application/json", // 응답을 json 받도록 지정
   },
 });
-// 요청 인터셉터: 요청보내기 전에 Access Token 을 헤더에 추가
+// 요청 인터셉터: 요청보내기 전에 Access Token 을 헤더에 추가 
 api.interceptors.request.use(
   (config) => {
     if (typeof window !== "undefined") {
