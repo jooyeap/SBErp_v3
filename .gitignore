@@ -21,7 +21,6 @@ front/.env.*.local
 **/.env.local
 **/.env.*.local
 
-docs/**
 SBErp_accessKeys.csv
 SBErpV3.pem
 
