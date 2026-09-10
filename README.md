@@ -16,6 +16,7 @@
 - [기술 스택](#기술-스택)
 - [아키텍처](#아키텍처)
 - [핵심 기능](#핵심-기능)
+- [스크린샷](#스크린샷)
 - [트러블슈팅](#트러블슈팅)
 - [배포 / CI-CD](#배포--cicd)
 
@@ -39,7 +40,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 | `ApprDoc` | 결재 문서(기안) 관리 — 결재 워크플로우 엔진 |
 | `ApprLine` | 결재선 구성 — 결재 순서, 위임/대결 처리 |
 
-*(근태/HR, 조직관리, 프로젝트관리 등은 다른 팀원 담당 — 해당 모듈은 이 저장소에 포함되지 않습니다.)*
+*(근태/HR은 정수정, 조직관리는 최윤정, 프로젝트관리는 최다영 팀원 담당 — 해당 모듈은 이 저장소에 포함되지 않습니다.)*
 
 <br>
 
@@ -80,9 +81,28 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <br>
 
+## 스크린샷
+
+**동작 흐름 (GIF)**
+
+| AI 양식 자동 생성 | 결재선 구성 · 위임 처리 |
+|---|---|
+| ![AI 양식 생성](./docs/screenshots/appr-form-ai.gif) | ![결재선 구성](./docs/screenshots/appr-line-editor.gif) |
+
+**화면 (정적)**
+
+| 결재 문서함 | 결재 상세/타임라인 |
+|---|---|
+| ![결재 문서함](./docs/screenshots/appr-doc-list.png) | ![결재 상세](./docs/screenshots/appr-doc-detail.png) |
+
+<!-- TODO: docs/screenshots/ 폴더에 GIF 2개 + 이미지 2개 업로드, 파일명 맞추기 -->
+<!-- GIF 제작 팁: ScreenToGif(윈도우)/Kap(맥) 등으로 5~10초 내외 짧게, 가로 800px 정도로 리사이즈해서 용량 줄이기 -->
+
+<br>
+
 ## 트러블슈팅
 
-프로젝트 진행 중 겪은 문제와 해결 과정 중 대표적인 두 가지입니다.
+프로젝트 진행 중 겪은 문제와 설계 결정 과정입니다.
 
 **1. IDOR(권한 우회) 취약점 자체 발굴 및 방어**
 v2 → v3 전환 과정에서 기존 코드를 감사하던 중, 클라이언트가 보낸 ID 값을 그대로 신뢰해 다른 회사의 결재 데이터에 접근 가능한 지점을 다수 발견했습니다. 이를 계기로 모든 데이터 조회를 `@AuthenticationPrincipal`에서 서버가 직접 도출한 comId로 제한하고, Controller-Service-Mapper 전 계층에 동일한 검증을 중복 배치했습니다.
@@ -90,7 +110,20 @@ v2 → v3 전환 과정에서 기존 코드를 감사하던 중, 클라이언트
 **2. 결재선 정합성 버그**
 결재가 순서대로 처리되지 않고 다음 결재자가 활성화되지 않는 현상을 로그로 추적한 결과, 하나의 매퍼 메서드(`updateLineStatus`)가 "현재 결재선 처리"와 "다음 결재선 활성화"를 동시에 담당하면서 조건이 뒤섞여 있었습니다. `activateNextLine`을 별도 메서드로 분리해 해결했습니다.
 
-**3. 배포 환경 이슈**
+**3. 위임/대결 기능의 IDOR 재발 방지**
+초기 IDOR 방어 이후 추가한 결재선 위임(대결) 기능에서도 동일한 패턴의 취약점이 재발할 뻔했습니다. 신규 기능을 개발할 때마다 이전에 정리한 "comId 검증 체크리스트"를 기준으로 자체 리뷰하는 습관을 들였고, 제출 전 위임 요청 API에서 비슷한 누락을 미리 발견해 수정했습니다.
+
+**4. Lombok boolean 필드 getter 트랩**
+`boolean isImportant` 필드에 Lombok을 적용하면 getter가 `isImportant()`로 생성되는데, MyBatis resultMap의 `property`나 프론트 폼 `name`을 `isImportant`로 그대로 쓰면 매핑이 조용히 실패합니다. `property="important"` / `name="important"`로 통일해 해결했습니다.
+
+**5. STS 컴파일러 옵션 이슈**
+STS(Spring Tool Suite)는 Gradle의 javac이 아닌 Eclipse 자체 컴파일러(ecj)를 사용합니다. `build.gradle`에만 `-parameters` 옵션을 설정하면 STS에서는 반영되지 않아 `@RequestParam`/`@PathVariable`의 파라미터명이 유지되지 않고, Swagger 문서에 `arg0`, `arg1`로 표시되는 문제가 있었습니다. Project Properties → Java Compiler에서 별도로 설정해 해결했습니다.
+
+**6. AI 양식 생성의 검증 범위 명확화**
+OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_object` 옵션으로 JSON 파싱 오류는 방지하지만, 이는 엄밀한 JSON Schema Validation과는 다릅니다. 실제 필드 단위 유효성 검증은 프론트엔드에서 별도로 수행하도록 설계했고, 이 경계를 명확히 문서화해 과장 없이 설명할 수 있도록 정리했습니다.
+
+**7. 배포 환경 이슈**
+
 | 문제 | 원인 | 해결 |
 |---|---|---|
 | Java 파일 인코딩 오류 | UTF-8 BOM 포함 | BOM 제거 후 재커밋 |
@@ -108,3 +141,4 @@ v2 → v3 전환 과정에서 기존 코드를 감사하던 중, 클라이언트
 - **DB**: Oracle 23ai(`oracle-free:latest`)를 Docker 컨테이너로 운영
 
 <!-- TODO: SSL(certbot), Elastic IP 적용 완료되면 이 섹션에 추가 -->
+
