@@ -40,7 +40,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 | `ApprDoc` | 결재 문서(기안) 관리 — 결재 워크플로우 엔진 |
 | `ApprLine` | 결재선 구성 — 결재 순서, 위임/대결 처리 |
 
-*(근태/HR, 조직관리, 프로젝트관리는 팀원 담당 — 해당 모듈은 이 저장소에 포함되지 않습니다.)*
+*(근태/HR은 정수정, 조직관리는 최윤정, 프로젝트관리는 최다영 팀원 담당 — 해당 모듈은 이 저장소에 포함되지 않습니다.)*
 
 <br>
 
@@ -85,9 +85,13 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 **동작 흐름 (GIF)**
 
-| AI 양식 자동 생성 | 결재선 구성 · 위임 처리 |
+| AI 양식 자동 생성 | 결재선 구성 |
 |---|---|
 | ![AI 양식 생성](./docs/screenshots/appr-form-ai.gif) | ![결재선 구성](./docs/screenshots/appr-line-editor.gif) |
+
+| 위임(대결) 요청 | 위임(대결) 요청 처리 |
+|---|---|
+| ![위임 요청](./docs/screenshots/appr-line-delegation-request.gif) | ![위임 요청 처리](./docs/screenshots/appr-line-delegation-process.gif) |
 
 **화면 (정적)**
 
@@ -95,8 +99,8 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 |---|---|
 | ![결재 문서함](./docs/screenshots/appr-doc-list.png) | ![결재 상세](./docs/screenshots/appr-doc-detail.png) |
 
-<!-- TODO: docs/screenshots/ 폴더에 GIF 2개 + 이미지 2개 업로드, 파일명 맞추기 -->
-<!-- GIF 제작 팁: ScreenToGif(윈도우)/Kap(맥) 등으로 5~10초 내외 짧게, 가로 800px 정도로 리사이즈해서 용량 줄이기 -->
+<!-- TODO: docs/screenshots/ 폴더에 GIF 4개 + 이미지 2개 업로드, 파일명 맞추기 -->
+<!-- GIF 제작 팁: ScreenToGif(윈도우)/Kap(맥) 등으로 5~10초 내외 짧게, 가로 500~600px, fps 10~15 -->
 
 <br>
 
