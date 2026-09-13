@@ -8,6 +8,16 @@
   <!-- TODO: SSL·로그인 최종 검증 끝나면 뱃지 유지, 아니면 삭제 -->
 </p>
 
+<p align="left">
+  <img src="https://img.shields.io/badge/Java%2017-007396?style=flat-square&logo=openjdk&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Spring%20Boot%203-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Spring%20Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Oracle%2023ai-F80000?style=flat-square&logo=oracle&logoColor=white"/>
+  <img src="https://img.shields.io/badge/OpenAI%20API-412991?style=flat-square&logo=openai&logoColor=white"/>
+</p>
+
 <br>
 
 ## 목차
@@ -19,6 +29,7 @@
 - [스크린샷](#스크린샷)
 - [트러블슈팅](#트러블슈팅)
 - [배포 / CI-CD](#배포--cicd)
+- [관련 저장소](#관련-저장소)
 
 <br>
 
@@ -74,7 +85,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 ## 핵심 기능
 
-- **결재 양식(ApprForm)**: 버전 관리, OpenAI API로 자연어 설명을 입력하면 JSON Schema 기반 동적 양식 자동 생성
+- **결재 양식(ApprForm)**: 버전 관리, OpenAI API로 자연어 설명을 입력하면 구조화된 JSON 양식 자동 생성 (`response_format: json_object` + 프론트엔드 필드 검증)
 - **결재 문서(ApprDoc)**: 기안 → 결재선 순차 처리 → 승인/반려 워크플로우
 - **결재선(ApprLine)**: 결재선 구성, 개별 위임(대결) 요청, 즐겨찾기 결재선
 - **결재 이력**: 타임라인 형태로 문서별 처리 이력 조회
@@ -145,4 +156,17 @@ OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_objec
 - **DB**: Oracle 23ai(`oracle-free:latest`)를 Docker 컨테이너로 운영
 
 <!-- TODO: SSL(certbot), Elastic IP 적용 완료되면 이 섹션에 추가 -->
+
+<br>
+
+## 관련 저장소
+
+같은 전자결재 모듈이 버전을 거치며 어떻게 발전했는지 비교해보실 수 있습니다.
+
+| 버전 | 설명 | 링크 |
+|---|---|---|
+| v1 | Spring MVC + MyBatis 기반 초기 구현 | [SBErp_v1](https://github.com/jooyeap/SBErp_v1) |
+| v2 | Spring Boot + Thymeleaf, AI 양식 생성 최초 도입 | [SBErp_v2](https://github.com/jooyeap/SBErp_v2) |
+| Profile | 전체 프로젝트 이력 및 기술 스택 요약 | [github.com/jooyeap](https://github.com/jooyeap) |
+
 
