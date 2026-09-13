@@ -104,7 +104,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 ## 📸 스크린샷
 
 **1. AI 결재 양식 자동 생성**
-![AI 양식 생성](./docs/screenshots/appr-form-ai.gif)
+![AI 양식 생성](./docs/screenshots/appr-form-ai.gif)</br>
 관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. 직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
 
 **2. 결재선 구성**
