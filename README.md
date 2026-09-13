@@ -21,19 +21,28 @@
 <br>
 
 ## 목차
-- [프로젝트 소개](#프로젝트-소개)
-- [담당 역할](#담당-역할)
-- [기술 스택](#기술-스택)
-- [아키텍처](#아키텍처)
-- [핵심 기능](#핵심-기능)
-- [스크린샷](#스크린샷)
-- [트러블슈팅](#트러블슈팅)
-- [배포 / CI-CD](#배포--cicd)
-- [관련 저장소](#관련-저장소)
+- [프로젝트 개요](#-프로젝트-개요)
+- [담당 역할](#-담당-역할)
+- [기술 스택](#-기술-스택)
+- [아키텍처](#️-아키텍처)
+- [핵심 기능](#-핵심-기능)
+- [스크린샷](#-스크린샷)
+- [트러블슈팅](#-트러블슈팅)
+- [배포 / CI-CD](#-배포--ci-cd)
+- [관련 저장소](#-관련-저장소)
 
 <br>
 
-## 프로젝트 소개
+## 📌 프로젝트 개요
+
+| 항목 | 내용 |
+|---|---|
+| 프로젝트명 | Spring-Breeze-ERP v3 |
+| 팀명 | Spring Breeze |
+| 팀 인원 | 4명 |
+| 도메인 | Enterprise Resource Planning — 전자결재 모듈 |
+| 대상 사용자 | 중소 규모 기업 관리자 / 임직원 |
+| 본인 담당 | 전자결재(ApprForm · ApprDoc · ApprLine) 단독 설계·개발 |
 
 Spring-Breeze-ERP는 4인 팀이 개발한 사내 ERP 시스템으로, 전자결재·근태·조직관리·프로젝트관리 모듈로 구성되어 있습니다. 이 저장소는 그중 제가 **단독으로 설계하고 개발한 전자결재 모듈**만을 담고 있습니다.
 
@@ -41,7 +50,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <br>
 
-## 담당 역할
+## 👥 담당 역할
 
 팀 내에서 아래 3개 도메인을 단독으로 설계·개발했습니다.
 
@@ -55,21 +64,21 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <br>
 
-## 기술 스택
+## 🛠 기술 스택
 
 | 구분 | 기술 |
 |---|---|
-| Backend | Java 17 · Spring Boot 3 · Spring Security · JWT · Redis |
-| Data Access | JPA(신규 기능) · MyBatis(기존 CRUD) |
-| Database | Oracle 23ai (Docker) |
-| Frontend | Next.js 12 (Pages Router) · React 17 · Redux Toolkit · redux-saga · Ant Design v4 |
-| AI 연동 | OpenAI API (`response_format: json_object`) |
-| Infra | AWS EC2 (t3.small) · Nginx · DuckDNS · PM2 |
-| CI/CD | GitHub Actions (jar + scp 배포) |
+| Backend | ![Java](https://img.shields.io/badge/Java%2017-007396?style=flat-square&logo=openjdk&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot%203-6DB33F?style=flat-square&logo=springboot&logoColor=white) ![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white) |
+| Data Access | ![JPA](https://img.shields.io/badge/JPA-59666C?style=flat-square&logo=hibernate&logoColor=white) ![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat-square) |
+| Database | ![Oracle](https://img.shields.io/badge/Oracle%2023ai-F80000?style=flat-square&logo=oracle&logoColor=white) |
+| Frontend | ![Next.js](https://img.shields.io/badge/Next.js%2012-000000?style=flat-square&logo=nextdotjs&logoColor=white) ![React](https://img.shields.io/badge/React%2017-61DAFB?style=flat-square&logo=react&logoColor=black) ![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-764ABC?style=flat-square&logo=redux&logoColor=white) ![Ant Design](https://img.shields.io/badge/Ant%20Design%20v4-0170FE?style=flat-square&logo=antdesign&logoColor=white) |
+| AI 연동 | ![OpenAI](https://img.shields.io/badge/OpenAI%20API-412991?style=flat-square&logo=openai&logoColor=white) |
+| Infra | ![AWS EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white) ![DuckDNS](https://img.shields.io/badge/DuckDNS-1E90FF?style=flat-square) ![PM2](https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=pm2&logoColor=white) |
+| CI/CD | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white) |
 
 <br>
 
-## 아키텍처
+## 🏗️ 아키텍처
 
 ```
 [Next.js Frontend] ──REST API(JWT)──▶ [Spring Boot 3 Backend] ──▶ [Oracle 23ai]
@@ -83,7 +92,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <br>
 
-## 핵심 기능
+## 🚀 핵심 기능
 
 - **결재 양식(ApprForm)**: 버전 관리, OpenAI API로 자연어 설명을 입력하면 구조화된 JSON 양식 자동 생성 (`response_format: json_object` + 프론트엔드 필드 검증)
 - **결재 문서(ApprDoc)**: 기안 → 결재선 순차 처리 → 승인/반려 워크플로우
@@ -92,30 +101,39 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <br>
 
-## 스크린샷
+## 📸 스크린샷
 
-**동작 흐름 (GIF)**
+**1. AI 결재 양식 자동 생성**
+![AI 양식 생성](./docs/screenshots/appr-form-ai.gif)
+관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. 직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
 
-| AI 양식 자동 생성 | 결재선 구성 |
-|---|---|
-| ![AI 양식 생성](./docs/screenshots/appr-form-ai.gif) | ![결재선 구성](./docs/screenshots/appr-line-editor.gif) |
+**2. 결재선 구성**
+![결재선 구성](./docs/screenshots/appr-line-editor.gif)
+부서 → 사원 → 결재 순서 지정까지 3단 패널로 이어지는 흐름입니다. 자주 쓰는 결재선을 즐겨찾기로 저장해 재사용할 수 있습니다.
 
-| 위임(대결) 요청 | 위임(대결) 요청 처리 |
-|---|---|
-| ![위임 요청](./docs/screenshots/appr-line-delegation-request.gif) | ![위임 요청 처리](./docs/screenshots/appr-line-delegation-process.gif) |
+**3. 위임(대결) 요청**
+![위임 요청](./docs/screenshots/appr-line-delegation-request.gif)
+결재 상세 화면에서 "위임/대결 요청" 버튼을 눌러 본인의 결재 권한을 다른 사원에게 위임하는 흐름입니다.
 
-**화면 (정적)**
+**4. 위임(대결) 요청 처리**
+![위임 요청 처리](./docs/screenshots/appr-line-delegation-process.gif)
+위임을 요청받은 사원이 요청을 확인하고 승인/반려하는 화면입니다.
 
-| 결재 문서함 | 결재 상세/타임라인 |
-|---|---|
-| ![결재 문서함](./docs/screenshots/appr-doc-list.png) | ![결재 상세](./docs/screenshots/appr-doc-detail.png) |
+**5. 결재 문서함**
+![결재 문서함](./docs/screenshots/appr-doc-list.png)
+본인이 기안했거나 결재해야 할 문서를 상태별(진행중/완료/반려)로 조회하는 목록 화면입니다.
+
+**6. 결재 상세 / 타임라인**
+![결재 상세](./docs/screenshots/appr-doc-detail.png)
+문서 상세 정보와 함께, 결재선을 따라 각 결재자의 처리 상태(기안/검토중/대기/완료)를 타임라인 형태로 보여줍니다.
 
 <!-- TODO: docs/screenshots/ 폴더에 GIF 4개 + 이미지 2개 업로드, 파일명 맞추기 -->
 <!-- GIF 제작 팁: ScreenToGif(윈도우)/Kap(맥) 등으로 5~10초 내외 짧게, 가로 500~600px, fps 10~15 -->
+<!-- 선택 추가 후보: (7) 결재 반려 처리 — 반려 사유 입력 화면, (8) 양식 버전 관리 — 수정 시 새 버전 생성되는 화면 -->
 
 <br>
 
-## 트러블슈팅
+## 🐛 트러블슈팅
 
 프로젝트 진행 중 겪은 문제와 설계 결정 과정입니다.
 
@@ -148,7 +166,7 @@ OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_objec
 
 <br>
 
-## 배포 / CI-CD
+## 🚢 배포 / CI-CD
 
 - **인프라**: AWS EC2(t3.small) · Nginx 리버스 프록시 · DuckDNS(`sberpjy.duckdns.org`)
 - **백엔드**: GitHub Actions에서 jar 빌드 → scp로 EC2 전송 → 재기동
@@ -159,14 +177,13 @@ OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_objec
 
 <br>
 
-## 관련 저장소
+## 🔗 관련 저장소
 
-같은 전자결재 모듈이 버전을 거치며 어떻게 발전했는지 비교해보실 수 있습니다.
-
-| 버전 | 설명 | 링크 |
-|---|---|---|
-| v1 | Spring MVC + MyBatis 기반 초기 구현 | [SBErp_v1](https://github.com/jooyeap/SBErp_v1) |
-| v2 | Spring Boot + Thymeleaf, AI 양식 생성 최초 도입 | [SBErp_v2](https://github.com/jooyeap/SBErp_v2) |
-| Profile | 전체 프로젝트 이력 및 기술 스택 요약 | [github.com/jooyeap](https://github.com/jooyeap) |
+| 버전 | 링크 |
+|---|---|
+| v1 (초기 구현) | [SBErp_v1](https://github.com/jooyeap/SBErp_v1) |
+| v2 (Spring Boot 전환, AI 최초 도입) | [SBErp_v2](https://github.com/jooyeap/SBErp_v2) |
+| 전체 이력 | [github.com/jooyeap](https://github.com/jooyeap) |
 
 
+****
