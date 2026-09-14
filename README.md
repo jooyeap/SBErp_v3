@@ -103,28 +103,50 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 ## 📸 스크린샷
 
-**1. AI 결재 양식 자동 생성**</br>
-![AI 양식 생성](./docs/screenshots/appr-form-ai.gif)</br>
+**1. AI 결재 양식 자동 생성**
+
+<p align="center"><img src="./docs/screenshots/appr-form-ai.gif" width="600" alt="AI 양식 생성"/></p>
+
 관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. 직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
 
-**2. 결재선 구성**</br>
-![결재선 구성](./docs/screenshots/appr-line-editor.gif)</br>
+<br>
+
+**2. 결재선 구성**
+
+<p align="center"><img src="./docs/screenshots/appr-line-editor.gif" width="600" alt="결재선 구성"/></p>
+
 부서 → 사원 → 결재 순서 지정까지 3단 패널로 이어지는 흐름입니다. 자주 쓰는 결재선을 즐겨찾기로 저장해 재사용할 수 있습니다.
 
-**3. 위임(대결) 요청**</br>
-![위임 요청](./docs/screenshots/appr-line-delegation-request.gif)</br>
+<br>
+
+**3. 위임(대결) 요청**
+
+<p align="center"><img src="./docs/screenshots/appr-line-delegation-request.gif" width="600" alt="위임 요청"/></p>
+
 결재 상세 화면에서 "위임/대결 요청" 버튼을 눌러 본인의 결재 권한을 다른 사원에게 위임하는 흐름입니다.
 
-**4. 위임(대결) 요청 처리**</br>
-![위임 요청 처리](./docs/screenshots/appr-line-delegation-process.gif)</br>
+<br>
+
+**4. 위임(대결) 요청 처리**
+
+<p align="center"><img src="./docs/screenshots/appr-line-delegation-process.gif" width="600" alt="위임 요청 처리"/></p>
+
 위임을 요청받은 사원이 요청을 확인하고 승인/반려하는 화면입니다.
 
-**5. 결재 문서함**</br>
-![결재 문서함](./docs/screenshots/appr-doc-list.gif)</br>
+<br>
+
+**5. 결재 문서함**
+
+<p align="center"><img src="./docs/screenshots/appr-doc-list.png" width="600" alt="결재 문서함"/></p>
+
 본인이 기안했거나 결재해야 할 문서를 상태별(진행중/완료/반려)로 조회하는 목록 화면입니다.
 
+<br>
+
 **6. 결재 상세 / 타임라인**
-![결재 상세](./docs/screenshots/appr-doc-detail.png)</br>
+
+<p align="center"><img src="./docs/screenshots/appr-doc-detail.png" width="600" alt="결재 상세"/></p>
+
 문서 상세 정보와 함께, 결재선을 따라 각 결재자의 처리 상태(기안/검토중/대기/완료)를 타임라인 형태로 보여줍니다.
 
 <!-- TODO: docs/screenshots/ 폴더에 GIF 4개 + 이미지 2개 업로드, 파일명 맞추기 -->
@@ -186,4 +208,3 @@ OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_objec
 | 전체 이력 | [github.com/jooyeap](https://github.com/jooyeap) |
 
 
-****
