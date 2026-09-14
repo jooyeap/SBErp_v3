@@ -107,7 +107,8 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <p align="center"><img src="./docs/screenshots/appr-form-ai.gif" width="600" alt="AI 양식 생성"/></p>
 
-관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. 직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
+관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다.
+직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
 
 <br>
 
@@ -137,7 +138,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 **5. 결재 문서함**
 
-<p align="center"><img src="./docs/screenshots/appr-doc-list.png" width="600" alt="결재 문서함"/></p>
+<p align="center"><img src="./docs/screenshots/appr-doc-list.gif" width="600" alt="결재 문서함"/></p>
 
 본인이 기안했거나 결재해야 할 문서를 상태별(진행중/완료/반려)로 조회하는 목록 화면입니다.
 
