@@ -1,4 +1,4 @@
-# Spring-Breeze-ERP · 전자결재(Electronic Approval) 모듈
+# SBerp v3 · 전자결재(Electronic Approval) 모듈
 
 > 4인 팀 ERP 프로젝트 중 **전자결재 모듈을 단독 설계·개발**한 개인 저장소입니다.
 > 원본 팀 프로젝트: Spring MVC(v1) → Spring Boot + Thymeleaf(v2) → **Spring Boot 3 + Next.js(v3, 현재 버전)**
@@ -22,13 +22,15 @@
 
 ## 목차
 - [프로젝트 개요](#-프로젝트-개요)
-- [담당 역할](#-담당-역할)
 - [기술 스택](#-기술-스택)
+- [담당 역할](#-담당-역할)
+- [ERD](#-erd-entity-relationship-diagram)
 - [아키텍처](#️-아키텍처)
 - [핵심 기능](#-핵심-기능)
 - [스크린샷](#-스크린샷)
 - [트러블슈팅](#-트러블슈팅)
 - [배포 / CI-CD](#-배포--ci-cd)
+- [라이선스](#-라이선스)
 - [관련 저장소](#-관련-저장소)
 
 <br>
@@ -37,30 +39,17 @@
 
 | 항목 | 내용 |
 |---|---|
-| 프로젝트명 | Spring-Breeze-ERP v3 |
+| 프로젝트명 | SBerp v3 (spring-breeze-erp-v3) |
 | 팀명 | Spring Breeze |
 | 팀 인원 | 4명 |
 | 도메인 | Enterprise Resource Planning — 전자결재 모듈 |
+| 개발 상태 | 배포 진행 중 (SSL 적용 예정) |
 | 대상 사용자 | 중소 규모 기업 관리자 / 임직원 |
 | 본인 담당 | 전자결재(ApprForm · ApprDoc · ApprLine) 단독 설계·개발 |
 
-Spring-Breeze-ERP는 4인 팀이 개발한 사내 ERP 시스템으로, 전자결재·근태·조직관리·프로젝트관리 모듈로 구성되어 있습니다. 이 저장소는 그중 제가 **단독으로 설계하고 개발한 전자결재 모듈**만을 담고 있습니다.
+SBerp는 4인 팀이 개발한 사내 ERP 시스템으로, 전자결재·근태·조직관리·프로젝트관리 모듈로 구성되어 있습니다. 이 저장소는 그중 제가 **단독으로 설계하고 개발한 전자결재 모듈**만을 담고 있습니다.
 
 v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, v3에서는 **Spring Boot 3 + Next.js 기반 REST API 아키텍처**로 전면 재설계했습니다. 이 과정에서 이전 버전의 코드를 스스로 감사(self-audit)하여 보안 취약점을 찾고 개선한 경험이 이 프로젝트의 핵심 스토리입니다.
-
-<br>
-
-## 👥 담당 역할
-
-팀 내에서 아래 3개 도메인을 단독으로 설계·개발했습니다.
-
-| 도메인 | 설명 |
-|---|---|
-| `ApprForm` | 결재 양식 관리 — 버전 관리, OpenAI API 기반 AI 양식 자동 생성 |
-| `ApprDoc` | 결재 문서(기안) 관리 — 결재 워크플로우 엔진 |
-| `ApprLine` | 결재선 구성 — 결재 순서, 위임/대결 처리 |
-
-*(근태/HR, 조직관리, 프로젝트관리는 다른 팀원 담당 — 해당 모듈은 이 저장소에 포함되지 않습니다.)*
 
 <br>
 
@@ -75,6 +64,31 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 | AI 연동 | ![OpenAI](https://img.shields.io/badge/OpenAI%20API-412991?style=flat-square&logo=openai&logoColor=white) |
 | Infra | ![AWS EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white) ![DuckDNS](https://img.shields.io/badge/DuckDNS-1E90FF?style=flat-square) ![PM2](https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=pm2&logoColor=white) |
 | CI/CD | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white) |
+
+<br>
+
+## 👥 담당 역할
+
+팀 내에서 아래 3개 도메인을 단독으로 설계·개발했습니다.
+
+| 도메인 | 설명 |
+|---|---|
+| `ApprForm` | 결재 양식 관리 — 버전 관리, OpenAI API 기반 AI 양식 자동 생성 |
+| `ApprDoc` | 결재 문서(기안) 관리 — 결재 워크플로우 엔진 |
+| `ApprLine` | 결재선 구성 — 결재 순서, 위임/대결 처리 |
+
+*(근태/HR은 정수정, 조직관리는 최윤정, 프로젝트관리는 최다영 팀원 담당 — 해당 모듈은 이 저장소에 포함되지 않습니다.)*
+
+<br>
+
+## 🗂 ERD (Entity Relationship Diagram)
+
+본인이 담당한 전자결재 도메인의 핵심 테이블입니다.
+
+- **APPROVAL**: `appr_form`(결재 양식), `appr_doc`(결재 문서), `appr_line`(결재선)
+- `appr_form`은 버전 필드(`for_version`)와 소프트 삭제(`is_deleted`)로, 문서가 제출된 시점의 양식을 그대로 보존합니다.
+- `appr_doc`은 `com_id`(회사)를 기준으로 격리되며, 다른 회사의 문서에 접근할 수 없도록 서버에서 강제합니다.
+- `appr_line`은 `appr_doc`과 1:N 관계로, 결재 순서를 기준으로 순차 처리됩니다.
 
 <br>
 
@@ -107,7 +121,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <p align="center"><img src="./docs/screenshots/appr-form-ai.gif" width="600" alt="AI 양식 생성"/></p>
 
-관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다.</br>직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
+관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. 직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
 
 <br>
 
@@ -196,6 +210,12 @@ OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_objec
 - **DB**: Oracle 23ai(`oracle-free:latest`)를 Docker 컨테이너로 운영
 
 <!-- TODO: SSL(certbot), Elastic IP 적용 완료되면 이 섹션에 추가 -->
+
+<br>
+
+## 📄 라이선스
+
+본 저장소는 Spring Breeze 팀의 협업 프로젝트(SBerp) 중 본인이 단독 설계·개발한 전자결재 모듈을 개인 포트폴리오용으로 재구성한 것입니다.
 
 <br>
 
