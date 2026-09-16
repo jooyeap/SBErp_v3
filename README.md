@@ -3,6 +3,9 @@
 > 4인 팀 ERP 프로젝트 중 **전자결재 모듈을 단독 설계·개발**한 개인 저장소입니다.
 > 원본 팀 프로젝트: Spring MVC(v1) → Spring Boot + Thymeleaf(v2) → **Spring Boot 3 + Next.js(v3, 현재 버전)**
 
+> 📌 **본 저장소는 팀 프로젝트(SBerp) 중 본인이 단독으로 설계·개발한 전자결재 모듈 코드만 별도로 재구성한 개인 포트폴리오 저장소입니다.** (v1/v2는 팀 코드 전체를 아카이빙한 저장소이며, v3는 본인 파트만 담고 있습니다.)
+> 팀 전체 원본 저장소: https://github.com/yoonguri988/spring-breeze-erp
+
 <p align="left">
   <a href="http://sberpjy.duckdns.org"><img src="https://img.shields.io/badge/Live%20Demo-sberpjy.duckdns.org-informational?style=flat"/></a>
   <!-- TODO: SSL·로그인 최종 검증 끝나면 뱃지 유지, 아니면 삭제 -->
@@ -121,7 +124,7 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 <p align="center"><img src="./docs/screenshots/appr-form-ai.gif" width="600" alt="AI 양식 생성"/></p>
 
-관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. <br>직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
+관리자가 "휴가 신청서"처럼 자연어로 원하는 양식을 입력하면, OpenAI API가 구조화된 JSON을 반환해 양식 필드가 자동으로 채워집니다. 직접 작성/AI 생성 모드를 토글로 전환할 수 있습니다.
 
 <br>
 
