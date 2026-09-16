@@ -163,8 +163,6 @@ v1(Spring MVC + MyBatis)에서 시작해 v2(Spring Boot + Thymeleaf)를 거쳐, 
 
 문서 상세 정보와 함께, 결재선을 따라 각 결재자의 처리 상태(기안/검토중/대기/완료)를 타임라인 형태로 보여줍니다.
 
-<!-- TODO: docs/screenshots/ 폴더에 GIF 4개 + 이미지 2개 업로드, 파일명 맞추기 -->
-<!-- GIF 제작 팁: ScreenToGif(윈도우)/Kap(맥) 등으로 5~10초 내외 짧게, 가로 500~600px, fps 10~15 -->
 <!-- 선택 추가 후보: (7) 결재 반려 처리 — 반려 사유 입력 화면, (8) 양식 버전 관리 — 수정 시 새 버전 생성되는 화면 -->
 
 <br>
@@ -225,6 +223,6 @@ OpenAI API로 결재 양식을 자동 생성할 때 `response_format: json_objec
 |---|---|
 | v1 (초기 구현) | [SBErp_v1](https://github.com/jooyeap/SBErp_v1) |
 | v2 (Spring Boot 전환, AI 최초 도입) | [SBErp_v2](https://github.com/jooyeap/SBErp_v2) |
-| 전체 이력 | [github.com/jooyeap](https://github.com/jooyeap) |
+| 프로필 | [github.com/jooyeap](https://github.com/jooyeap) |
 
 
